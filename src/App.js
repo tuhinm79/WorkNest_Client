@@ -12,6 +12,7 @@ import Add from "./pages/add/Add";
 import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
+import OrderCompleted from "./pages/orders/orderCompleted";
 import MyGigs from "./pages/myGigs/MyGigs";
 import {
   QueryClient,
@@ -86,6 +87,10 @@ function App() {
         {
           path: "/success",
           element: <Success />,
+        },
+        {
+          path: "/completedorders",
+          element: <OrderCompleted />,
         },
       ],
     },
