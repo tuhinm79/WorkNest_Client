@@ -75,7 +75,9 @@ const Orders = () => {
       if (err.response.status === 404) {
         console.log("2");
         const res = await newRequest.post(`/conversations/`, {
-          to: currentUser.seller ? buyerId : sellerId,
+          seller: currentUser.seller ? sellerId : buyerId,
+          buyer: currentUser.seller ? buyerId : sellerId,
+          isSeller: currentUser.isSeller,
         });
         navigate(`/message/${res.data.id}`);
       }
@@ -103,52 +105,48 @@ const Orders = () => {
                 <th className="ordertd7">time left</th>
                 <th className="ordertd4">Price</th>
                 <th className="ordertd5">Contact</th>
-                {currentUser.isSeller ? (
-                    ""
-                  ) : (
-                    <th>completed?</th>
-                  )}
+                {currentUser.isSeller ? "" : <th>completed?</th>}
                 {/* <th>order</th> */}
               </tr>
             </thead>
             {data.map((order) => {
               const projtime = order.deliveryTime;
               // // if(projtime!==undefined){
-              const createtime = moment("2024-04-24T06:15:53.163+00:00");
+              const createtime = moment(order.createdAt);
               const currentTime = moment();
               const timeLeft = currentTime.diff(createtime, "days");
               // const timeLeft=1;
               // console.log(order._id)
-              return(
-              <tr key={order._id}>
-                <td>
-                  <img className="image" src={order.img} alt="" />
-                </td>
-                <td>{order.title}</td>
-                <td>
-                  {currentUser.isSeller ? order.buyerName : order.sellerName}
-                </td>
-                <td>{projtime-timeLeft} day left</td>
-                <td>{order.price}</td>
-                <td onClick={() => handleContact(order)}>
-                  <img className="message" src="./img/message.png" alt="" />
-                </td>
-                {/* order */}
-                <td>
-                  {currentUser.isSeller ? (
-                    ""
-                  ) : (
-                    <img
-                      className="message"
-                      src="./img/greencheck.png"
-                      alt=""
-                      onClick={() => orderCompleted(order)}
-                    />
-                  )}
-                </td>
-              </tr>
+              return (
+                <tr key={order._id}>
+                  <td>
+                    <img className="image" src={order.img} alt="" />
+                  </td>
+                  <td>{order.title}</td>
+                  <td>
+                    {currentUser.isSeller ? order.buyerName : order.sellerName}
+                  </td>
+                  <td>{projtime - timeLeft} day left</td>
+                  <td>{order.price}</td>
+                  <td onClick={() => handleContact(order)}>
+                    <img className="message" src="./img/message.png" alt="" />
+                  </td>
+                  {/* order */}
+                  <td>
+                    {currentUser.isSeller ? (
+                      ""
+                    ) : (
+                      <img
+                        className="message"
+                        src="./img/greencheck.png"
+                        alt=""
+                        onClick={() => orderCompleted(order)}
+                      />
+                    )}
+                  </td>
+                </tr>
               );
-})}
+            })}
           </table>
         </div>
       )}

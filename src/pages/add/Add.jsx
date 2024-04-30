@@ -67,6 +67,10 @@ const Add = () => {
     // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     // const usernamee=currentUser[1];
     // console.log(usernamee);
+    // console.log(state)
+    let q=JSON.parse(localStorage.getItem("currentUser"));
+    // console.log(q["_id"]);
+    state.userId=q["_id"];
     mutation.mutate({...state,sellerName:currentUser.username});
     navigate("/mygigs");
   };
@@ -119,7 +123,8 @@ const Add = () => {
               rows="16"
               onChange={handleChange}
             ></textarea>
-            <button onClick={handleSubmit}>Create</button>
+            {uploading ? (<button>Please wait files uploading</button>) : (<button onClick={handleSubmit}>Create</button>)}
+            {/* <button onClick={handleSubmit}>Create</button> */}
           </div>
           <div className="details">
             <label htmlFor="">Service Title</label>

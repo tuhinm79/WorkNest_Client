@@ -4,7 +4,7 @@ const upload = async (file) => {
   const data = new FormData();
   data.append("file", file);
   data.append("upload_preset", "worknest");
-  console.log(file);
+  // console.log(file);
   try {
     const res = await axios.post(
       `https://api.cloudinary.com/v1_1/dqc0px7bg/image/upload`,

@@ -61,7 +61,7 @@ function Gigs() {
     <div className="gigs">
       <div className="container">
         <span className="breadcrumbs">Liverr {">"} {category} {">"}</span>
-        <h1>AI Artists</h1>
+        <h1> {category} </h1>
         <p>
           Explore the boundaries of art and technology with Liverr&apos;s AI artists
         </p>
