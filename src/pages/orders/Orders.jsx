@@ -4,6 +4,7 @@ import "./Orders.css";
 // import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import moment from "moment";
 
 const Orders = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -99,16 +100,26 @@ const Orders = () => {
                 <th className="ordertd2">
                   {currentUser.isSeller ? "Buyer Name" : "Seller Name"}
                 </th>
+                <th className="ordertd7">time left</th>
                 <th className="ordertd4">Price</th>
                 <th className="ordertd5">Contact</th>
-                <th className="ordertd6">
-                  {currentUser.isSeller ? "Time Left" : "order"}
-                </th>
+                {currentUser.isSeller ? (
+                    ""
+                  ) : (
+                    <th>completed?</th>
+                  )}
                 {/* <th>order</th> */}
               </tr>
             </thead>
-            {data.map((order) => (
+            {data.map((order) => {
+              const projtime = order.deliveryTime;
+              // // if(projtime!==undefined){
+              const createtime = moment("2024-04-24T06:15:53.163+00:00");
+              const currentTime = moment();
+              const timeLeft = currentTime.diff(createtime, "days");
+              // const timeLeft=1;
               // console.log(order._id)
+              return(
               <tr key={order._id}>
                 <td>
                   <img className="image" src={order.img} alt="" />
@@ -117,6 +128,7 @@ const Orders = () => {
                 <td>
                   {currentUser.isSeller ? order.buyerName : order.sellerName}
                 </td>
+                <td>{projtime-timeLeft} day left</td>
                 <td>{order.price}</td>
                 <td onClick={() => handleContact(order)}>
                   <img className="message" src="./img/message.png" alt="" />
@@ -135,7 +147,8 @@ const Orders = () => {
                   )}
                 </td>
               </tr>
-            ))}
+              );
+})}
           </table>
         </div>
       )}

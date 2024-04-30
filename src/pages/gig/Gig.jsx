@@ -5,8 +5,30 @@ import { Link,useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
+// import Slider from "react-slick";
+
+{/* <Slider {...settings} className="slider">
+              {data.images.map((img) => (
+                <img key={img} src={img} alt="" />
+              ))}
+            </Slider> */}
 
 function Gig() {
+  // const settings = {
+  //   customPaging: function(i) {
+  //     return (
+  //       <a>
+  //         {/* <img src={`${baseUrl}/abstract0${i + 1}.jpg`} /> */}
+  //       </a>
+  //     );
+  //   },
+  //   dots: true,
+  //   dotsClass: "slick-dots slick-thumb",
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1
+  // };
   const { id } = useParams();
   const navigate = useNavigate();
   // var t=1;
@@ -92,7 +114,7 @@ function Gig() {
                 )}
               </div>
             )}
-            {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
+            {/* <Slider {...settings} className="slider">
               {data.images.map((img) => (
                 <img key={img} src={img} alt="" />
               ))}

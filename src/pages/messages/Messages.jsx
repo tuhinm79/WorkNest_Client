@@ -7,7 +7,9 @@ import moment from "moment";
 
 const Messages = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
+  // var projtime;
+  // var currtime;
+  // var createtime;
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
@@ -49,32 +51,42 @@ const Messages = () => {
               <th>Date</th>
               <th>Action</th>
             </tr>
-            {data.map((c) => (
-              <tr
-                className={
-                  ((currentUser.isSeller && !c.readBySeller) ||
-                    (!currentUser.isSeller && !c.readByBuyer)) &&
-                  "active"
-                }
-                key={c.id}
-              >
-                <td>{currentUser.isSeller ? "c.buyerId" : "c.sellerId"}</td>
-                <td>
-                  <Link to={`/message/${c.id}`} className="link">
-                    {c?.lastMessage?.substring(0, 100)}...
-                  </Link>
-                </td>
-                <td>{moment(c.updatedAt).fromNow()}</td>
-                <td>
-                  {((currentUser.isSeller && !c.readBySeller) ||
-                    (!currentUser.isSeller && !c.readByBuyer)) && (
-                    <button onClick={() => handleRead(c.id)}>
-                      Mark as Read
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
+            <tbody>
+              {data.map((c) => {
+                const projtime = 1055;
+                const createtime = moment('2024-04-24T06:15:53.163+00:00');
+                const currentTime = moment(); // Current time
+                const timeLeft = currentTime.diff(createtime, 'days');
+                
+                const timeDifference = projtime - timeLeft;
+                return (
+                  <tr
+                    className={
+                      ((currentUser.isSeller && !c.readBySeller) ||
+                        (!currentUser.isSeller && !c.readByBuyer)) &&
+                      "active"
+                    }
+                    key={c.id}
+                  >
+                    <td>{currentUser.isSeller ? c.buyerId : c.sellerId}</td>
+                    <td>
+                      <Link to={`/message/${c.id}`} className="link">
+                        {c?.lastMessage?.substring(0, 100)}...
+                      </Link>
+                    </td>
+                    <td>{timeDifference}</td>
+                    <td>
+                      {((currentUser.isSeller && !c.readBySeller) ||
+                        (!currentUser.isSeller && !c.readByBuyer)) && (
+                        <button onClick={() => handleRead(c.id)}>
+                          Mark as Read
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       )}

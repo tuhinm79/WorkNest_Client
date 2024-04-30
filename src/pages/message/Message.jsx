@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import "./Message.css";
@@ -9,8 +9,8 @@ const Message = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const queryClient = useQueryClient();
-
-  const { isLoading, error, data } = useQuery({
+  const messagesRef = useRef(null);
+  const { isLoading, error, data: messages } = useQuery({
     queryKey: ["messages"],
     queryFn: () =>
       newRequest.get(`/messages/${id}`).then((res) => {
@@ -38,6 +38,12 @@ const Message = () => {
     });
     e.target[0].value = "";
   };
+  useEffect(() => {
+    // Scroll to the bottom of the messages container when messages change
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return (
     <div className="message">
@@ -50,8 +56,8 @@ const Message = () => {
         ) : error ? (
           "error"
         ) : (
-          <div className="messages">
-            {data.map((m) => (
+          <div className="messages" ref={messagesRef}>
+            {messages.map((m) => (
               <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
                 <img
                   src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
