@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Featured.css";
 import { useNavigate } from "react-router-dom";
-
+import man from "../../assets/mman.png";
 function Featured() {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
@@ -14,6 +14,9 @@ function Featured() {
       <div className="container">
         <div className="left">
           <h1>
+            {/* Find the right <br />
+            <span>freelance </span>
+            service, right away */}
             Find the perfect <span>freelance</span> services for your business
           </h1>
           <div className="search">
@@ -24,6 +27,11 @@ function Featured() {
                 // placeholder='Try "building mobile app"'
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSubmit(); // Call the submit function when Enter key is pressed
+                  }
+                }}
               />
             </div>
             <button onClick={handleSubmit}>Search</button>
@@ -37,7 +45,7 @@ function Featured() {
           </div>
         </div>
         <div className="right">
-          <img src="./img/man.png" alt="" />
+          <img src={man} />
         </div>
       </div>
     </div>

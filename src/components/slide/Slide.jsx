@@ -33,7 +33,7 @@ const Slide = ({ children}) => {
     infinite: true,
     // speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    // slidesToScroll: 1,
     initialSlide: 0,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,

@@ -56,10 +56,10 @@ function App() {
           path: "/orders",
           element: <Orders />,
         },
-        {
-          path: "/messages",
-          element: <Messages />,
-        },
+        // {
+        //   path: "/messages",
+        //   element: <Messages />,
+        // },
         {
           path: "/message/:id",
           element: <Message />,
@@ -81,7 +81,7 @@ function App() {
           element: <Login />,
         },
         {
-          path: "/pay/:id",
+          path: "/pay",
           element: <Pay />,
         },
         {

@@ -34,8 +34,8 @@ function Footer() {
             <h2>Support</h2>
             <span>Help & Support</span>
             <span>Trust & Safety</span>
-            <span>Selling on Fiverr</span>
-            <span>Buying on Fiverr</span>
+            <span>Selling on WorkNest</span>
+            <span>Buying on WorkNest</span>
           </div>
           <div className="item">
             <h2>Community</h2>
@@ -52,24 +52,23 @@ function Footer() {
             <span>Community Standards</span>
           </div>
           <div className="item">
-            <h2>More From Fiverr</h2>
-            <span>Fiverr Business</span>
-            <span>Fiverr Pro</span>
-            <span>Fiverr Logo Maker</span>
-            <span>Fiverr Guides</span>
+            <h2>More From WorkNest</h2>
+            <span>WorkNest Business</span>
+            <span>WorkNest Pro</span>
+            <span>WorkNest Logo Maker</span>
+            <span>WorkNest Guides</span>
             <span>Get Inspired</span>
-            <span>Fiverr Select</span>
+            <span>WorkNest Select</span>
             <span>ClearVoice</span>
-            <span>Fiverr Workspace</span>
+            <span>WorkNest Workspace</span>
             <span>Learn</span>
-            <span>Working Not Working</span>
           </div>
         </div>
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>fiverr</h2>
-            <span>© Fiverr International Ltd. 2023</span>
+            <h2>WorkNest</h2>
+            <span>© WorkNest International Ltd. 2024</span>
           </div>
           <div className="right">
             <div className="social">

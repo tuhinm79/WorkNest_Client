@@ -1,8 +1,10 @@
 .footer {
   display: flex;
   justify-content: center;
-  color: #666;
-  margin: 50px 0px;
+  background-color: #322c2b;
+  color: white;
+  padding: 50px 40px;
+  /* margin: 50px 0px; */
 
   img {
     width: 24px;
@@ -19,8 +21,8 @@
         flex-direction: column;
         gap: 20px;
         h2 {
-          font-size: 16px;
-          color: #555;
+          font-size: 18px;
+          color: white;
         }
         span {
           font-weight: 300;

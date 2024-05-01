@@ -5,7 +5,11 @@ import { Link,useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
-// import Slider from "react-slick";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 {/* <Slider {...settings} className="slider">
               {data.images.map((img) => (
@@ -15,13 +19,13 @@ import Reviews from "../../components/reviews/Reviews";
 
 function Gig() {
   // const settings = {
-  //   customPaging: function(i) {
-  //     return (
-  //       <a>
-  //         {/* <img src={`${baseUrl}/abstract0${i + 1}.jpg`} /> */}
-  //       </a>
-  //     );
-  //   },
+  //   // customPaging: function(i) {
+  //   //   return (
+  //   //     <a>
+  //   //       {/* <img src={`${baseUrl}/abstract0${i + 1}.jpg`} /> */}
+  //   //     </a>
+  //   //   );
+  //   // },
   //   dots: true,
   //   dotsClass: "slick-dots slick-thumb",
   //   infinite: true,
@@ -51,7 +55,7 @@ function Gig() {
         }
       );
       // setClientSecret(res.data.clientSecret);
-      navigate(`/success`);
+      navigate(`/pay`);
     } catch (err) {
       console.log(err);
     }
@@ -87,7 +91,7 @@ function Gig() {
         <div className="container">
           <div className="left">
             <span className="breadcrumbs">
-              Fiverr {">"} Graphics & Design {">"}
+            WorkNest {">"} Graphics & Design {">"}
             </span>
             <h1>{data.title}</h1>
             {isLoadingUser ? (
@@ -114,11 +118,17 @@ function Gig() {
                 )}
               </div>
             )}
+            {/* <img  src={data.images[0]} alt="" /> */}
             {/* <Slider {...settings} className="slider">
               {data.images.map((img) => (
-                <img key={img} src={img} alt="" />
+                <img key={img} src={img} alt="" style={{width:"100px"}}/>
               ))}
             </Slider> */}
+            <Carousel >
+            {data.images.map((img) => (
+                <img key={img} src={img} alt=""/>
+              ))}
+            </Carousel>
             <h2>About This Gig</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
@@ -196,6 +206,7 @@ function Gig() {
               </div>
             </div>
             <div className="features">
+            <span className="featuresspan">features:</span>
               {data.features.map((feature) => (
                 <div className="item" key={feature}>
                   <img src="/img/greencheck.png" alt="" />

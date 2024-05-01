@@ -17,7 +17,7 @@ function Gigs() {
     queryKey: ["gigs"],
     queryFn: () =>
       newRequest
-        .get(
+        .get( 
           `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
         .then((res) => {
@@ -28,7 +28,7 @@ function Gigs() {
   var linkpart2 = linkpart[3]; 
   var category1 = linkpart2.split("=", 100);
   var category = category1[1];
-  console.log(category);
+  // console.log(category);
   useEffect(() => {
     const datacheck = () => {
       if (
@@ -60,10 +60,10 @@ function Gigs() {
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">Liverr {">"} {category} {">"}</span>
+        <span className="breadcrumbs">WorkNest {">"} {category} {">"}</span>
         <h1> {category} </h1>
         <p>
-          Explore the boundaries of art and technology with Liverr&apos;s AI artists
+          Explore the boundaries of art and technology with WorkNest&apos;s {category} Artists
         </p>
         <div className="menu">
           <div className="left">

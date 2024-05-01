@@ -4,6 +4,7 @@ import newRequest from "../../utils/newRequest";
 
 const Success = () => {
   const { search } = useLocation();
+  
   const navigate = useNavigate();
   const params = new URLSearchParams(search);
   const payment_intent = params.get("payment_intent");

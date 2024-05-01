@@ -6,6 +6,7 @@ import Slide from "../../components/slide/Slide";
 import CatCard from "../../components/catCard/CatCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import { cards, projects } from "../../data";
+import tickpic from "../../assets/check128.png"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -26,7 +27,7 @@ function Home() {
           <div className="item">
             <h1>A whole world of freelance talent at your fingertips</h1>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <img src={tickpic} alt="" />
               The best for every budget
             </div>
             <p>
@@ -34,7 +35,7 @@ function Home() {
               just project-based pricing.
             </p>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <img src={tickpic} alt="" />
               Quality work done quickly
             </div>
             <p>
@@ -42,7 +43,7 @@ function Home() {
               minutes.
             </p>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <img src={tickpic} alt="" />
               Protected payments, every time
             </div>
             <p>
@@ -50,7 +51,7 @@ function Home() {
               until you approve the work.
             </p>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <img src={tickpic} alt="" />
               24/7 support
             </div>
             <p>
@@ -188,9 +189,9 @@ function Home() {
           </div>
         </div>
       </div> */}
-      <Slide slidesToShow={4} arrowsScroll={4}>
+      <Slide slidesToShow={4} arrowsScroll={4} >
         {projects.map((card) => (
-          <ProjectCard key={card.id} card={card} />
+          <ProjectCard key={card.id} card={card}/>
         ))}
       </Slide>
     </div>

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import "../orderCompl
 // import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import moment from "moment";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const OrderCompleted = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -120,7 +119,7 @@ const OrderCompleted = () => {
                 <td>
                   {currentUser.isSeller ? completedorder.buyerName : completedorder.sellerName}
                 </td>
-                <td>{completedorder.completedAt.substring(0, 10)}</td>
+                <td>{completedorder.completedAt}</td>
                 <td>{completedorder.price}</td>
                 {/* order */}
                 {/* <td>

@@ -39,15 +39,14 @@ function Navbar() {
       <div className="container">
         <div className="logo">
           <Link className="link" to="/">
-            <span className="text">fiverr</span>
+            <span className="text">WorkNest</span>
           </Link>
-          <span className="dot">.</span>
         </div>
         <div className="links">
-          <span>Fiverr Business</span>
+          {/* <span>Fiverr Business</span> */}
           <span>Explore</span>
           <span>English</span>
-          {!currentUser?.isSeller && <span>Become a Seller</span>}
+          {/* {!currentUser?.isSeller && <span>Become a Seller</span>} */}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
               <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
@@ -67,9 +66,9 @@ function Navbar() {
                   <Link className="link" to="/orders">
                     Orders
                   </Link>
-                  <Link className="link" to="/messages">
+                  {/* <Link className="link" to="/messages">
                     Messages
-                  </Link>
+                  </Link> */}
                   <Link className="link" to="/completedorders">
                     Completed Orders
                   </Link>
@@ -98,20 +97,20 @@ function Navbar() {
             {/* <Link className="link menuLink" to="/gigs?cat=Graphics&Design">
               Graphics & Design
             </Link> */}
-            <Link className="link menuLink" to="/gigs?cat=design">
-              Graphics & Design
+            <Link className="link menuLink" to="/gigs?cat=Graphics_Design">
+              Graphics Design
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=Video&Animation">
-              Video & Animation
+            <Link className="link menuLink" to="/gigs?cat=Video_Animation">
+              Video Animation
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=Writing&Translation">
-              Writing & Translation
+            <Link className="link menuLink" to="/gigs?cat=Writing_Translation">
+              Writing Translation
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=Music&Audio">
-              Music & Audio
+            <Link className="link menuLink" to="/gigs?cat=Music_Audio">
+              Music Audio
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=Programming&Tech">
-              Programming & Tech
+            <Link className="link menuLink" to="/gigs?cat=Programming_Tech">
+              Programming Tech
             </Link>
             <Link className="link menuLink" to="/gigs?cat=Photography">
               Photography
@@ -119,7 +118,7 @@ function Navbar() {
             <Link className="link menuLink" to="/gigs?cat=AIServices">
               AI Services
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=DigitalMarketing">
+            <Link className="link menuLink" to="/gigs?cat=Digital_Marketing">
               Digital Marketing
             </Link>
           </div>

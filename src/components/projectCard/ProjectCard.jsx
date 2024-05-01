@@ -3,6 +3,7 @@ import "./ProjectCard.css";
 
 function ProjectCard({ card }) {
   return (
+    // <div className=" outer">
     <div className="projectCard">
       <img src={card.img} alt="" />
       <div className="info">
@@ -12,7 +13,8 @@ function ProjectCard({ card }) {
           <span>{card.username}</span>
         </div>
       </div>
-    </div>
+      </div>
+    // </div>
   );
 }
 
