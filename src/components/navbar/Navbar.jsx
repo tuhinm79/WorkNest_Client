@@ -116,10 +116,10 @@ function Navbar() {
             <Link className="link menuLink" to="/gigs?cat=Photography">
               Photography
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=AI">
+            <Link className="link menuLink" to="/gigs?cat=AIServices">
               AI Services
             </Link>
-            <Link className="link menuLink" to="/gigs?cat=dm">
+            <Link className="link menuLink" to="/gigs?cat=DigitalMarketing">
               Digital Marketing
             </Link>
           </div>
