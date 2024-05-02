@@ -13,6 +13,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    // console.log(username)
     e.preventDefault();
     if(username===""){
       swal({

@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { useState } from "react";
 import "./Pay.css";
 import logo from "../../assets/card_img.png";
 import swal from "sweetalert";
@@ -7,10 +8,122 @@ import newRequest from "../../utils/newRequest";
 
 const Pay = () => {
   const navigate = useNavigate();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    address: "",
+    city: "",
+    country: "",
+    zip: "",
+    cname: "",
+    cnumber: "",
+    em: "",
+    ey: "",
+    cvv: "",
+  });
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const buyinggigid = JSON.parse(localStorage.getItem("buyinggigid"));
   const buyinggigdata = JSON.parse(localStorage.getItem("buyinggigdata"));
+
+  const handleChange = (e) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const registervalidation = async (e) => {
+    e.preventDefault();
+    if (user.username === "") {
+      swal({
+        title: "Empty Full Name",
+        // text: "Correct OTP!",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.email === "") {
+      swal({
+        title: "Enter Email ID",
+        // text: "Correct OTP!",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (!emailRegex.test(user.email)) {
+      swal({
+        title: "Not a Valid Email ID",
+        // text: "Correct OTP!",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.address === "") {
+      swal({
+        title: "Empty Address",
+        // text: "Correct OTP!",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.city === "") {
+      swal({
+        title: "Empty City",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.country === "") {
+      swal({
+        title: "Empty State",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.cname === "") {
+      swal({
+        title: "Empty Card Name",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.cnumber === "") {
+      swal({
+        title: "Empty card Number",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.cnumber.length !== 16) {
+      swal({
+        title: "Not a valid Card Number",
+        // text: "Correct OTP!",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.em === "") {
+      swal({
+        title: "Empty expiry month",
+        // text: "Correct OTP!",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.ey === "") {
+      swal({
+        title: "Empty expiry year",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.cvv === "") {
+      swal({
+        title: "Empty CVV Number",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else if (user.cvv.length !== 3) {
+      swal({
+        title: "Not a valid CVV",
+        icon: "error",
+        button: "Try Again",
+      });
+    } else {
+      paymentsuccess();
+    }
+  };
 
   const paymentsuccess = async () => {
     try {
@@ -21,7 +134,7 @@ const Pay = () => {
           deliveryTime: buyinggigdata.deliveryTime,
         }
       );
-      const price=buyinggigdata.price.toString();
+      const price = buyinggigdata.price.toString();
       swal({
         title: "Payment Successful!",
         text: "Payment done of ₹ " + price,
@@ -47,29 +160,59 @@ const Pay = () => {
 
               <div class="inputBox">
                 <span>full name :</span>
-                <input type="text" placeholder="john deo" />
+                <input
+                  name="username"
+                  type="text"
+                  placeholder="john deo"
+                  onChange={handleChange}
+                />
               </div>
               <div class="inputBox">
                 <span>email :</span>
-                <input type="email" placeholder="example@example.com" />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="example@example.com"
+                  onChange={handleChange}
+                />
               </div>
               <div class="inputBox">
                 <span>address :</span>
-                <input type="text" placeholder="room - street - locality" />
+                <input
+                  name="address"
+                  type="text"
+                  placeholder="room - street - locality"
+                  onChange={handleChange}
+                />
               </div>
               <div class="inputBox">
                 <span>city :</span>
-                <input type="text" placeholder="mumbai" />
+                <input
+                  name="city"
+                  type="text"
+                  placeholder="mumbai"
+                  onChange={handleChange}
+                />
               </div>
 
               <div class="flex">
                 <div class="inputBox">
                   <span>state :</span>
-                  <input type="text" placeholder="india" />
+                  <input
+                    name="country"
+                    type="text"
+                    placeholder="india"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div class="inputBox">
                   <span>zip code :</span>
-                  <input type="text" placeholder="123 456" />
+                  <input
+                    name="zip"
+                    type="number"
+                    placeholder="123 456"
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
@@ -83,25 +226,50 @@ const Pay = () => {
               </div>
               <div class="inputBox">
                 <span>name on card :</span>
-                <input type="text" placeholder="mr. john deo" />
+                <input
+                  name="cname"
+                  type="text"
+                  placeholder="mr. john deo"
+                  onChange={handleChange}
+                />
               </div>
               <div class="inputBox">
                 <span>credit card number :</span>
-                <input type="number" placeholder="1111-2222-3333-4444" />
+                <input
+                  name="cnumber"
+                  type="number"
+                  placeholder="1111-2222-3333-4444"
+                  onChange={handleChange}
+                />
               </div>
               <div class="inputBox">
                 <span>exp month :</span>
-                <input type="text" placeholder="january" />
+                <input
+                  name="em"
+                  type="text"
+                  placeholder="january"
+                  onChange={handleChange}
+                />
               </div>
 
               <div class="flex">
                 <div class="inputBox">
                   <span>exp year :</span>
-                  <input type="number" placeholder="2022" />
+                  <input
+                    name="ey"
+                    type="number"
+                    placeholder="2022"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div class="inputBox">
                   <span>CVV :</span>
-                  <input type="text" placeholder="1234" />
+                  <input
+                    name="cvv"
+                    type="number"
+                    placeholder="123"
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
@@ -112,7 +280,7 @@ const Pay = () => {
             style={{ textAlign: "center" }}
             value="proceed to checkout"
             class="submit-btn"
-            onClick={paymentsuccess}
+            onClick={registervalidation}
           />
         </form>
       </div>
