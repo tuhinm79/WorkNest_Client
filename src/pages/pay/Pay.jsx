@@ -87,7 +87,7 @@ const Pay = () => {
             </div>
           </div>
 
-          <input className="paymentsuccessbutt" value="proceed to checkout" class="submit-btn" onClick={paymentsuccess}/>
+          <input className="paymentsuccessbutt" style={{textAlign:"center"}} value="proceed to checkout" class="submit-btn" onClick={paymentsuccess}/>
         </form>
       </div>
     </div>

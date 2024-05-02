@@ -1,3 +1,9 @@
+.messages::-webkit-scrollbar {
+  width: 0; /* This will hide the scrollbar in WebKit browsers */
+}
+.messages {
+  scrollbar-width: none; /* This will hide the scrollbar in Firefox */
+}
 .message {
   display: flex;
   justify-content: center;
@@ -10,27 +16,41 @@
       color: #555;
     }
     .messages {
-      margin: 30px 0px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9vHHZue6_81qut5-sW10tggFEKczvKagWuAzs-_W2qTTqg17Drzj-RiYyiaUp1SAseLI&usqp=CAU");
+      margin: 10px 0px;
       padding: 50px;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      height: 300px;
-      overflow: scroll;
+      /* width: 500px; */
+      height: 370px;
+      overflow-y: scroll;
+      border: solid #161a42 2px;
+      border-radius: 18px;
+      /* rad */
+
+      /* Optional: Firefox */
 
       .item {
         display: flex;
         gap: 20px;
         max-width: 600px;
-        font-size: 18px;
+        font-size: 15px;
+        /* height: 20px; */
 
         &.owner {
           flex-direction: row-reverse;
           align-self: flex-end;
 
           p {
+            background: rgb(65, 57, 194);
+            background: linear-gradient(
+              74deg,
+              rgba(65, 57, 194, 1) 0%,
+              rgba(98, 120, 216, 1) 82%
+            );
             max-width: 500px;
-            border-radius: 20px 0px 20px 20px;
+            border-radius: 10px 0px 15px 10px;
             background-color: royalblue;
             color: white;
           }
@@ -45,19 +65,26 @@
 
         p {
           max-width: 500px;
-          padding: 20px;
+          padding: 12px;
+          background: rgb(65, 57, 194);
+          background: linear-gradient(
+            286deg,
+            rgba(65, 57, 194, 1) 0%,
+            rgba(98, 120, 216, 1) 82%
+          );
+
           background-color: rgb(244, 241, 241);
-          border-radius: 0px 20px 20px 20px;
-          color: gray;
-          font-weight: 300;
+          border-radius: 0px 10px 10px 15px;
+          color: rgb(255, 255, 255);
+          font-weight: 100;
         }
       }
     }
 
-    hr {
+    .hrline {
       height: 0;
-      border: 0.5px solid rgb(232, 230, 230);
-      margin-bottom: 20px;
+      border: 2px solid #161a42;
+      margin-bottom: 10px;
     }
 
     .write {
@@ -67,21 +94,24 @@
 
       textarea {
         width: 80%;
-        height: 40px;
+        
+        resize: none;
+        height: 20px;
         padding: 10px;
-        border: 1px solid lightgray;
+        border: 1px solid #161a42;
         border-radius: 10px;
       }
 
-      button{
-        background-color: #1dbf73;
-        padding: 20px;
+      button {
+        background-color: #161a42;
+        /* padding: 20px; */
         color: white;
         font-weight: 500;
         border: none;
         border-radius: 10px;
         cursor: pointer;
         width: 100px;
+        height: 40px;
       }
     }
   }

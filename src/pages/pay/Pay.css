@@ -1,5 +1,8 @@
 .pay{
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+  background-image: url("../../assets/653fa56059d9399aa20f7a6f_merchant\ account\ vs\ payment\ gateway.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 
 *{
   font-family: 'Poppins', sans-serif;
@@ -14,9 +17,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:25px;
+  /* padding:25px; */
   min-height: 100vh;
-  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 40.1%);
+  /* background: linear-gradient(90deg, #2ecc71 60%, #27ae60 40.1%); */
 }
 
 .container form{
@@ -78,7 +81,7 @@
   width: 100%;
   padding:12px;
   font-size: 17px;
-  background: #27ae60;
+  background: #161a42;
   color:#fff;
   margin-top: 5px;
   cursor: pointer;
@@ -90,6 +93,6 @@
 
 
 .container form .submit-btn:hover{
-  background: #2ecc71;
+  background: #4851b2;
 }
 }

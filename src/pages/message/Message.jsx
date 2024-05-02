@@ -3,22 +3,26 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import "./Message.css";
-
+import chatbackpic from "../../assets/360_F_327515607_Hcps04aaEc7Ki43d1XZPxwcv0ZaIaorh.jpg";
 const Message = () => {
   const { id } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const queryClient = useQueryClient();
   const messagesRef = useRef(null);
-  const { isLoading, error, data: messages } = useQuery({
+  const {
+    isLoading,
+    error,
+    data: messages,
+  } = useQuery({
     queryKey: ["messages"],
     queryFn: () =>
       newRequest.get(`/messages/${id}`).then((res) => {
         return res.data;
       }),
-      // config: {
-        refetchInterval: 500, // 0.5 seconds
-      // }
+    // config: {
+    refetchInterval: 500, // 0.5 seconds
+    // }
   });
 
   const mutation = useMutation({
@@ -58,19 +62,32 @@ const Message = () => {
         ) : (
           <div className="messages" ref={messagesRef}>
             {messages.map((m) => (
-              <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
-                <img
-                  src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              <div
+                className={m.userId === currentUser._id ? "owner item" : "item"}
+                key={m._id}
+              >
+                {m.userId === currentUser._id ? <img
+                  src="http://res.cloudinary.com/dqc0px7bg/image/upload/v1714586714/worknest/azssskwdcui1sldonzpo.jpg"
                   alt=""
-                />
+                /> : <img
+                src="http://res.cloudinary.com/dqc0px7bg/image/upload/v1714575559/worknest/rnmlplap55ac50wp17pj.jpg"
+                alt=""
+              />}
+                {/* <img
+                  src="http://res.cloudinary.com/dqc0px7bg/image/upload/v1714575559/worknest/rnmlplap55ac50wp17pj.jpg"
+                  alt=""
+                /> */}
                 <p>{m.desc}</p>
               </div>
             ))}
           </div>
         )}
-        <hr />
+        <hr className="hrline" />
         <form className="write" onSubmit={handleSubmit}>
-          <textarea type="text" placeholder="write a message" />
+          <textarea
+            type="text"
+            placeholder="write a message"
+          />
           <button type="submit">Send</button>
         </form>
       </div>

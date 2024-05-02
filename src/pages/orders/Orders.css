@@ -1,7 +1,8 @@
 .orders {
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
   display: flex;
   justify-content: center;
-  color: #555;
+  color: #1e1e1e;
 
   .container {
     width: 1400px;
@@ -48,10 +49,13 @@
       tr {
         height: 50px;
         th {
+          /* font-family: 'Poppins', sans-serif; */
+          font-weight:bolder;
+          padding-left: 14px;
           text-align: left;
         }
         td {
-          
+          padding-left: 14px;
           sup{
             font-size: 12px;
           }
@@ -60,6 +64,9 @@
             width: 50px;
             height: 25px;
             object-fit: cover;
+            border-radius: 4px;
+            /* align: center; */
+            
           }
 
           .message {
@@ -68,7 +75,7 @@
           }
         }
         &:nth-child(even) {
-          background-color: #1dbf730f;
+          background-color: #Ddebee;
         }
       }
     }

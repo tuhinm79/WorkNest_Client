@@ -102,10 +102,10 @@ const Orders = () => {
                 <th className="ordertd2">
                   {currentUser.isSeller ? "Buyer Name" : "Seller Name"}
                 </th>
-                <th className="ordertd7">time left</th>
+                <th className="ordertd7">Time left</th>
                 <th className="ordertd4">Price</th>
                 <th className="ordertd5">Contact</th>
-                {currentUser.isSeller ? "" : <th>completed?</th>}
+                {currentUser.isSeller ? "" : <th>Completed?</th>}
                 {/* <th>order</th> */}
               </tr>
             </thead>

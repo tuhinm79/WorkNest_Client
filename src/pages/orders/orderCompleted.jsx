@@ -101,11 +101,11 @@ const OrderCompleted = () => {
                 </th>
                 <th className="ordertd7">Completed On</th>
                 <th className="ordertd4">Price</th>
-                {currentUser.isSeller ? (
+                {/* {currentUser.isSeller ? (
                     ""
                   ) : (
                     <th>completed?</th>
-                  )}
+                  )} */}
                 {/* <th>order</th> */}
               </tr>
             </thead>
@@ -119,7 +119,7 @@ const OrderCompleted = () => {
                 <td>
                   {currentUser.isSeller ? completedorder.buyerName : completedorder.sellerName}
                 </td>
-                <td>{completedorder.completedAt}</td>
+                <td>{completedorder.completedAt.substring(0,10)}</td>
                 <td>{completedorder.price}</td>
                 {/* order */}
                 {/* <td>

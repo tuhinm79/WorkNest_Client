@@ -3,6 +3,7 @@ import upload from "../../utils/upload";
 import "./Register.css";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 function Register() {
   const [file, setFile] = useState(null);
@@ -14,7 +15,49 @@ function Register() {
     country: "",
     isSeller: false,
     desc: "",
+    inpotp: "",
+    otp:""
   });
+  // const [otp, setOtp] = useState("");
+
+  const generateOTP = () => {
+    const newOTP = Math.floor(1000 + Math.random() * 9000);
+    user.otp=newOTP.toString();
+    sendoptinemail();
+    
+  };
+  const verifyOTP = () => {
+    // console.log(user.otp)
+    // console.log(user.otp,"hello",user.inpotp)
+    if(user.otp===user.inpotp){
+      swal({
+        title: "OTP Verified",
+        // text: "Correct OTP!",
+        icon: "success",
+        button: "OK", 
+      })
+    }
+    else{
+      swal({
+        title: "Wrong otp",
+        // text: "Correct OTP!",
+        icon: "success",
+        button: "OK", 
+      })
+    }
+  };
+  const sendoptinemail = async () => {
+    console.log(user.otp)
+    try {
+      await newRequest.post("/email/", {
+        otp: user.otp,
+        email: user.email.toString(),
+      });
+      // navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -76,7 +119,7 @@ function Register() {
             </div>
             <div style={{ width: "30%" }}>
               <button
-                type="submit"
+                onClick={generateOTP}
                 style={{
                   width: "100%",
                   padding: "10px",
@@ -90,9 +133,46 @@ function Register() {
               </button>
             </div>
           </div>
+          {/*  */}
+          <label htmlFor="">Enter OTP</label>
+          <div
+            className=""
+            style={{
+              display: "flex",
+              gap: "10px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ width: "70%" }}>
+              <input
+                name="inpotp"
+                type="text"
+                placeholder="Enter OTP"
+                onChange={handleChange}
+                style={{ width: "80%" }}
+              />
+            </div>
+            <div style={{ width: "30%" }}>
+              <button
+                onClick={verifyOTP}
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "none",
+                  color: "#fff",
+                  cursor: "pointer",
+                }}
+              >
+                Vefify OTP
+              </button>
+            </div>
+          </div>
 
-          <label htmlFor="">enter otp</label>
-          <input name="otp" type="text" onChange={handleChange} />
+          {/*  */}
+          {/* <label htmlFor="">enter otp</label>
+          <input name="otp" type="text" onChange={handleChange} /> */}
           <label htmlFor="">Password</label>
           <input name="password" type="password" onChange={handleChange} />
           <label htmlFor="">Profile Picture</label>
@@ -138,13 +218,6 @@ function Register() {
 }
 
 export default Register;
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import upload from "../../utils/upload";
