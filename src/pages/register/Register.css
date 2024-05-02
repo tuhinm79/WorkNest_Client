@@ -37,7 +37,7 @@
   align-items: center;
   justify-content: center;
 
-  form {
+  .form {
     width: 960px;
     padding: 20px 0px;
     display: flex;
