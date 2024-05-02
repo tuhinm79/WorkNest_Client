@@ -1,3 +1,37 @@
+.reg {
+  background-image: url("../../assets/653fa56059d9399aa20f7a6f_merchant\ account\ vs\ payment\ gateway.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* text-align: center; */
+
+  /* button {
+    border: none;
+    padding: 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: #161a42;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: center;
+  } */
+}
+.submitbutton {
+  border: none;
+  /* padding: 20px; */
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  background-color: #161a42;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 20px 100px;
+  margin-bottom: 20px;
+}
+.submitbutton:hover {
+  background: #4851b2;
+  border: 2px solid #161a42;
+}
 .register {
   display: flex;
   align-items: center;
@@ -5,44 +39,57 @@
 
   form {
     width: 960px;
-    padding: 100px 0px;
+    padding: 20px 0px;
     display: flex;
     gap: 120px;
 
-    h1 {
-      color: gray;
+    /* h1 {
+      color: #161a42;
       margin-bottom: 20px;
-    }
+    } */
 
     .left,
     .right {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      /* gap: 10px;
+       */
       justify-content: space-between;
 
       label {
-        color: gray;
-        font-size: 18px;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        margin-bottom: 6px;
+        /* font-weight: 300; */
       }
 
       input,
       textarea {
         padding: 20px;
-        border: 1px solid rgb(216, 214, 214);
+        border: 1px solid #161a42;
+        border-radius: 16px;
         overflow-y: auto;
         resize: none;
+        margin-bottom: 22px;
       }
 
-      button {
+      .otpButton {
         border: none;
-        padding: 20px;
+        /* padding: 20px; */
         color: white;
         font-weight: 500;
         font-size: 18px;
-        background-color: #1dbf73;
+        background-color: #161a42;
+        border-radius: 8px;
+        /* width: 1000px; */
+        /* padding-bottom: 50px ; */
         cursor: pointer;
+        /* align-self: center; */
+      }
+      .otpButton:hover {
+        background: #4851b2;
+        border: 2px solid #161a42;
       }
 
       .toggle {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Gig.css";
 // import { Slider } from "infinite-react-carousel/lib";
-import { Link,useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
@@ -9,13 +9,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel } from "react-responsive-carousel";
+import swal from 'sweetalert';
 
-{/* <Slider {...settings} className="slider">
+{
+  /* <Slider {...settings} className="slider">
               {data.images.map((img) => (
                 <img key={img} src={img} alt="" />
               ))}
-            </Slider> */}
+            </Slider> */
+}
 
 function Gig() {
   // const settings = {
@@ -47,24 +50,38 @@ function Gig() {
       }),
   });
   const payment_karo = async () => {
-    try {
-      const res = await newRequest.post(
-        `/orders/create-payment-intent/${id}`,{
-          buyername:currentUser.username,
-          deliveryTime:data.deliveryTime,
-        }
-      );
-      // setClientSecret(res.data.clientSecret);
-      navigate(`/pay`);
-    } catch (err) {
-      console.log(err);
+    if (currentUser.isSeller) {
+        swal({
+          title: "Seller can't Use Services!",
+          text: "To place order please create a New Account",
+          // icon: "success",
+          button: "OK", 
+        })
+      }
+     else {
+      localStorage.setItem("buyinggigid", JSON.stringify(id));
+      localStorage.setItem("buyinggigdata", JSON.stringify(data));
+        navigate(`/pay`);
+
+      // try {
+      //   const res = await newRequest.post(
+      //     `/orders/create-payment-intent/${id}`,
+      //     {
+      //       buyername: currentUser.username,
+      //       deliveryTime: data.deliveryTime,
+      //     }
+      //   );
+      //   // setClientSecret(res.data.clientSecret);
+      //   navigate(`/pay`);
+      // } catch (err) {
+      //   console.log(err);
+      // }
     }
   };
   const showcontact = () => {
     // Toggle between 0 and 1 when the button is clicked
     setT((prevT) => (prevT === 0 ? 1 : 0));
   };
-
 
   const userId = data?.userId;
 
@@ -91,7 +108,7 @@ function Gig() {
         <div className="container">
           <div className="left">
             <span className="breadcrumbs">
-            WorkNest {">"} Graphics & Design {">"}
+              WorkNest {">"} Graphics & Design {">"}
             </span>
             <h1>{data.title}</h1>
             {isLoadingUser ? (
@@ -124,9 +141,9 @@ function Gig() {
                 <img key={img} src={img} alt="" style={{width:"100px"}}/>
               ))}
             </Slider> */}
-            <Carousel >
-            {data.images.map((img) => (
-                <img key={img} src={img} alt=""/>
+            <Carousel>
+              {data.images.map((img) => (
+                <img key={img} src={img} alt="" />
               ))}
             </Carousel>
             <h2>About This Gig</h2>
@@ -155,8 +172,12 @@ function Gig() {
                       </div>
                     )}
                     <button onClick={showcontact}>Contact Me</button>
-                    <div>{t===1?(""):("Email Id:  "+dataUser.email + " ")}</div>
-                    <div>{t===1?(""):("Mobile No.: "+ dataUser.dataUser)}</div>
+                    <div>
+                      {t === 1 ? "" : "Email Id:  " + dataUser.email + " "}
+                    </div>
+                    <div>
+                      {t === 1 ? "" : "Mobile No.: " + dataUser.dataUser}
+                    </div>
                   </div>
                 </div>
                 <div className="box">
@@ -192,7 +213,7 @@ function Gig() {
           <div className="right">
             <div className="price">
               <h3>{data.shortTitle}</h3>
-              <h2>$ {data.price}</h2>
+              <h2>₹ {data.price}</h2>
             </div>
             <p>{data.shortDesc}</p>
             <div className="details">
@@ -206,7 +227,7 @@ function Gig() {
               </div>
             </div>
             <div className="features">
-            <span className="featuresspan">features:</span>
+              <span className="featuresspan">features:</span>
               {data.features.map((feature) => (
                 <div className="item" key={feature}>
                   <img src="/img/greencheck.png" alt="" />

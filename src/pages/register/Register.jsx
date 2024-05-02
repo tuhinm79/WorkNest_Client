@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import upload from "../../utils/upload";
 import "./Register.css";
 import newRequest from "../../utils/newRequest";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import swal from 'sweetalert';
 
 function Register() {
@@ -18,6 +18,7 @@ function Register() {
     inpotp: "",
     otp:""
   });
+
   // const [otp, setOtp] = useState("");
 
   const generateOTP = () => {
@@ -39,9 +40,9 @@ function Register() {
     }
     else{
       swal({
-        title: "Wrong otp",
+        title: "Wrong OTP",
         // text: "Correct OTP!",
-        icon: "success",
+        icon: "error",
         button: "OK", 
       })
     }
@@ -87,10 +88,14 @@ function Register() {
     }
   };
   return (
+    <div className="reg">
+      <div style={{textAlign:"center", paddingTop:"20px"}}><h1>Create a new account</h1></div>
+      
     <div className="register">
       <form onSubmit={handleSubmit}>
+        
         <div className="left">
-          <h1>Create a new account</h1>
+          {/* <h1>Create a new account</h1> */}
           <label htmlFor="">Username</label>
           <input
             name="username"
@@ -104,15 +109,15 @@ function Register() {
             style={{
               display: "flex",
               gap: "10px",
-              justifyContent: "center",
-              alignItems: "center",
+              // justifyContent: "center",
+              // alignItems: "center",
             }}
           >
             <div style={{ width: "70%" }}>
               <input
                 name="email"
                 type="email"
-                placeholder="email"
+                placeholder="Email"
                 onChange={handleChange}
                 style={{ width: "80%" }}
               />
@@ -120,11 +125,12 @@ function Register() {
             <div style={{ width: "30%" }}>
               <button
                 onClick={generateOTP}
+                className="otpButton"
                 style={{
                   width: "100%",
                   padding: "10px",
                   borderRadius: "5px",
-                  border: "none",
+                  marginTop:"10px",
                   color: "#fff",
                   cursor: "pointer",
                 }}
@@ -140,8 +146,8 @@ function Register() {
             style={{
               display: "flex",
               gap: "10px",
-              justifyContent: "center",
-              alignItems: "center",
+              // justifyContent: "center",
+              // alignItems: "center",
             }}
           >
             <div style={{ width: "70%" }}>
@@ -156,11 +162,12 @@ function Register() {
             <div style={{ width: "30%" }}>
               <button
                 onClick={verifyOTP}
+                className="otpButton"
                 style={{
                   width: "100%",
                   padding: "10px",
+                  marginTop:"10px",
                   borderRadius: "5px",
-                  border: "none",
                   color: "#fff",
                   cursor: "pointer",
                 }}
@@ -174,15 +181,15 @@ function Register() {
           {/* <label htmlFor="">enter otp</label>
           <input name="otp" type="text" onChange={handleChange} /> */}
           <label htmlFor="">Password</label>
-          <input name="password" type="password" onChange={handleChange} />
+          <input name="password" placeholder="*****" type="password" onChange={handleChange} />
           <label htmlFor="">Profile Picture</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-          <button type="submit">Register</button>
+          {/* <button type="submit">Register</button> */}
         </div>
         <div className="right">
-          <h1>I want to become a seller</h1>
+          {/* <h1>I want to become a seller</h1> */}
           <div className="toggle">
-            <label htmlFor="">Activate the seller account</label>
+            <label htmlFor="">want to become a seller</label>
             <label className="switch">
               <input type="checkbox" onChange={handleSeller} />
               <span className="slider round"></span>
@@ -213,6 +220,11 @@ function Register() {
           ></textarea>
         </div>
       </form>
+    </div>
+    <div style={{textAlign:"center", paddingBottom:"20px"}}>
+    <button className="submitbutton"type="submit">Register</button>
+        <div style={{textAlign:"center"}}><Link to="/Login" ><h4>Already have an account click here</h4></Link></div>
+    </div>
     </div>
   );
 }

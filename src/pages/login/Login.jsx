@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import newRequest from "../../utils/newRequest";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -40,7 +40,8 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
-        {error && error}
+        {/* {error && error} */}
+        <div style={{textAlign:"center"}}><Link to="/register" ><h4>Don't have an account click here</h4></Link></div>
       </form>
     </div>
   );

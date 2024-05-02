@@ -1,21 +1,41 @@
 import React from "react";
 import "./Pay.css";
 import logo from "../../assets/card_img.png";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import newRequest from "../../utils/newRequest";
 
 const Pay = () => {
   const navigate = useNavigate();
 
-  const paymentsuccess=()=>{
-    swal({
-      title: "Good job!",
-      text: "Payment DONE!",
-      icon: "success",
-      button: "OK", 
-    })
-    .then(()=> navigate("/orders"))
-  }
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const buyinggigid = JSON.parse(localStorage.getItem("buyinggigid"));
+  const buyinggigdata = JSON.parse(localStorage.getItem("buyinggigdata"));
+
+  const paymentsuccess = async () => {
+    try {
+      const res = await newRequest.post(
+        `/orders/create-payment-intent/${buyinggigid}`,
+        {
+          buyername: currentUser.username,
+          deliveryTime: buyinggigdata.deliveryTime,
+        }
+      );
+      const price=buyinggigdata.price.toString();
+      swal({
+        title: "Payment Successful!",
+        text: "Payment done of ₹ " + price,
+        icon: "success",
+        button: "OK",
+      }).then(() => {
+        localStorage.removeItem("buyinggigdata");
+        localStorage.removeItem("buyinggigid");
+        navigate("/orders");
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="pay">
@@ -87,7 +107,13 @@ const Pay = () => {
             </div>
           </div>
 
-          <input className="paymentsuccessbutt" style={{textAlign:"center"}} value="proceed to checkout" class="submit-btn" onClick={paymentsuccess}/>
+          <input
+            className="paymentsuccessbutt"
+            style={{ textAlign: "center" }}
+            value="proceed to checkout"
+            class="submit-btn"
+            onClick={paymentsuccess}
+          />
         </form>
       </div>
     </div>
