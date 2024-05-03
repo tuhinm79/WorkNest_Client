@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Featured.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import man from "../../assets/mman.png";
 function Featured() {
   const [input, setInput] = useState("");
@@ -28,20 +28,44 @@ function Featured() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     handleSubmit(); // Call the submit function when Enter key is pressed
                   }
                 }}
               />
             </div>
-            <button onClick={handleSubmit}>Search</button>
+            <button className="popbutton" onClick={handleSubmit}>Search</button>
           </div>
           <div className="popular">
             <span>Popular:</span>
-            <button>Web Design</button>
-            <button>WordPress</button>
+            <Link
+              className="link menuLink popbutton"
+              to="/gigs?cat=Music_Audio"
+            >
+              Music Audio
+            </Link>
+            <Link
+              className="link menuLink popbutton"
+              to="/gigs?cat=Photography"
+            >
+              Photography
+            </Link>
+            <Link
+              className="link menuLink popbutton"
+              to="/gigs?cat=Video_Animation"
+            >
+              Video Animation
+            </Link>
+            <Link
+              className="link menuLink popbutton"
+              to="/gigs?cat=AIServices"
+            >
+              AI Services
+            </Link>
+            {/* <button cl>Web Design</button> */}
+            {/* <button>WordPress</button>
             <button>Logo Design</button>
-            <button>AI Services</button>
+            <button>AI Services</button> */}
           </div>
         </div>
         <div className="right">

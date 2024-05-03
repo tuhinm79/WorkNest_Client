@@ -54,7 +54,7 @@
           }
         }
 
-        button {
+        .popbutton {
           width: 120px;
           height: 50px;
           border: none;
@@ -76,7 +76,7 @@
           width: max-content;
         }
 
-        button {
+        .popbutton {
           width: max-content;
           color: white;
           border: 1px solid white;
