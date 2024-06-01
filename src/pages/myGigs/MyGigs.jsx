@@ -54,7 +54,7 @@ function MyGigs() {
                 <th>Image</th>
                 <th>Title</th>
                 <th>Price</th>
-                <th>Sales</th>
+                {/* <th>Sales</th> */}
                 <th>Action</th>
               </tr>
             </thead>
@@ -65,7 +65,7 @@ function MyGigs() {
                 </td>
                 <td>{gig.title}</td>
                 <td>{gig.price}</td>
-                <td>{gig.sales}</td>
+                {/* <td>{gig.sales}</td> */}
                 <td>
                   <img
                     className="delete"

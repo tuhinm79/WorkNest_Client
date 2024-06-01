@@ -69,7 +69,7 @@ function Featured() {
           </div>
         </div>
         <div className="right">
-          <img src={man} />
+          {/* <img src={man} /> */}
         </div>
       </div>
     </div>
