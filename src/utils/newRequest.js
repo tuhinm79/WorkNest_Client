@@ -5,7 +5,8 @@ import axios from "axios";
 //   withCredentials: true,
 // });
 const newRequest =axios.create({
-  baseURL: "https://worknest-backend.onrender.com/api",
+  baseURL: "https://worknestbackend-production.up.railway.app/api",
+  // baseURL: "https://worknest-backend.onrender.com/api",
   withCredentials: true,
 });
 
